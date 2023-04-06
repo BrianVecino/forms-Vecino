@@ -1,0 +1,119 @@
+<form 
+(ngSubmit)="onSubmit()"
+[formGroup]="registerForm"  
+class="row g-3"
+>
+<div class="col-md-6">
+  <label for="inputEmail4" class="form-label">name</label>
+  <input formControlName="name" 
+  type="name"
+  [ngClass]="{'is-invalid': registerForm.get('name')?.invalid && registerForm.get('name')?.touched }" 
+  class="form-control" 
+  id="inputname">
+<div *ngIf="registerForm.get('name')?.hasError('required') && registerForm.get('name')?.touched" class="invalid-feedback">
+  Este campo es requerido
+</div>
+</div>
+
+
+<div class="col-md-6">
+  <label for="inputEmail4" class="form-label">lastName</label>
+  <input 
+  formControlName="lastName" 
+  type="lastName" 
+  [ngClass]="{'is-invalid': registerForm.get('lastName')?.invalid && registerForm.get('lastName')?.touched }"
+  class="form-control" 
+  id="inputEmail4">
+  <div *ngIf="registerForm.get('lastName')?.hasError('required') && registerForm.get('lastName')?.touched " class="invalid-feedback">
+    Este campo es requerido
+  </div>
+</div>
+
+
+
+<div class="col-md-6">
+      <label for="inputEmail4" class="form-label">Email</label>
+      <input 
+      [formControl]="emailControl" 
+      type="email" 
+      [ngClass]="{ 'is-invalid': emailControl.invalid && registerForm.get('Email')?.touched}"
+      class="form-control" 
+      id="inputEmail4"
+      >
+      <div *ngIf="emailControl.hasError('email') && registerForm.get('Email')?.touched" class="invalid-feedback">
+        Email invalido
+      </div>
+    </div>
+
+
+
+    <div class="col-md-6">
+      <label for="inputPassword4" class="form-label">Password</label>
+      <input formControlName="Password" type="password" class="form-control" id="inputPassword4">
+    </div>
+    <div class="col-12">
+      <label for="inputAddress" class="form-label">Address</label>
+      <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+    </div>
+    <div class="col-md-6">
+      <label for="inputCity" class="form-label">City</label>
+      <input type="text" class="form-control" id="inputCity">
+    </div>
+    <div class="col-md-4">
+      <label for="inputState" class="form-label">State</label>
+      <select id="inputState" class="form-select">
+        <option selected>Choose...</option>
+        <option>Provincia de Buenos aires</option>
+        <option>Misiones</option>
+        <option>Tierra del Fuego</option>
+        <option>Provincia de Córdoba</option>
+        <option>Entre Rios</option>
+        <option>Salta</option>
+      </select>
+    </div>
+
+
+
+    <div class="col-md-2">
+      <label for="inputZip" class="form-label">zip</label>
+      <input 
+      formControlName="zip"
+      type="text"
+      [ngClass]="{'is-invalid': registerForm.get('zip')?.invalid && registerForm.get('zip')?.touched }" 
+      class="form-control" 
+      id="inputZip">
+      <div 
+      *ngIf="registerForm.get('zip')?.hasError('required') && registerForm.get('zip')?.touched" class="invalid-feedback">
+      Minimo 3 caracteres
+    </div>
+
+
+
+    </div>
+
+
+
+    <div class="col-12">
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="gridCheck">
+        <label class="form-check-label" for="gridCheck">
+          Check me out
+        </label>
+      </div>
+    </div>
+    <div class="col-12">
+      <button type="submit" class="btn btn-primary">Sign in</button>
+    </div>
+  </form>
+  <div>
+    <div class="col-4">
+      <h2>JSON</h2>
+      <pre>{{registerForm.value | json}}</pre>
+      <hr>
+
+      <h3>Errores</h3>
+      <h4>Control del nombre</h4>
+      {{registerForm.get('name')?.errors | json}}
+    </div>
+  </div>
+
